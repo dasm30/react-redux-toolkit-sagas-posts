@@ -25,6 +25,7 @@ export const usePost = () => {
   const renderPost = () => {
     if (postLoading) return <p>Loading post...</p>;
     if (postErrors) return <p>Unable to display post.</p>;
+    if (!post.title) return <p>Post Not Found</p>;
 
     return <Post post={post} />;
   };

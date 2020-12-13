@@ -9,7 +9,6 @@ const SinglePostPage = () => {
   return (
     <section>
       {renderPost()}
-      <h2>Comments</h2>
       {renderComments()}
     </section>
   );

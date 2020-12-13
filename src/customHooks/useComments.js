@@ -21,10 +21,16 @@ export const useComments = () => {
   const renderComments = () => {
     if (!comments) return <p>Loading comments...</p>;
     if (commentsErrors) return <p>Unable to display comments.</p>;
+    if (!comments.length) return <></>;
 
-    return comments.map((comment) => (
-      <Comment key={comment.id} comment={comment} />
-    ));
+    return (
+      <>
+        <h2>Comments</h2>
+        {comments.map((comment) => (
+          <Comment key={comment.id} comment={comment} />
+        ))}
+      </>
+    );
   };
 
   return { comments, commentsErrors, renderComments };
