@@ -3,12 +3,15 @@ import {
   selectPostsList,
   selectPostsLoading,
   selectPostsErrors,
-  selectPosts
+  selectPosts,
+  selectPostField,
+  selectSettings
 } from "sagas/selectors";
 import { selectPost } from "sagas/selectors";
 import { selectComments } from "sagas/selectors";
 
 // POSTS
+// Can grow unnecessarily large
 export const usePostsSelector = () => useSelector(selectPosts, shallowEqual);
 export const usePostsListSelector = () =>
   useSelector(selectPostsList, shallowEqual);
@@ -18,9 +21,17 @@ export const usePostsErrorsSelector = () =>
   useSelector(selectPostsErrors, shallowEqual);
 
 // POST
+// Explicit and DRY
 export const usePostSelector = () => useSelector(selectPost, shallowEqual);
+export const usePostFieldSelector = (fieldName) =>
+  useSelector(selectPostField(fieldName), shallowEqual);
 
 // COMMENTS
-// This way, we stay DRY
+// DRY and scalable
 export const useCommentsSelector = (fieldName) =>
   useSelector(selectComments(fieldName), shallowEqual);
+
+// SETTINGS
+// For demonstration purposes
+export const useSettingsSelector = () =>
+  useSelector(selectSettings, shallowEqual);

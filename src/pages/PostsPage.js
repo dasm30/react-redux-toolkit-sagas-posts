@@ -2,15 +2,22 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { Post } from "components/Post";
-import { usePostsSelector } from "customHooks/stateSelectors";
+import {
+  usePostsSelector,
+  useSettingsSelector
+} from "customHooks/stateSelectors";
 import { postsActions } from "slices/posts";
+import { settingsActions } from "slices/settings";
 
 const PostsPage = () => {
   const dispatch = useDispatch();
   const { list, loading, errors } = usePostsSelector();
+  const { data } = useSettingsSelector();
+  console.log("Settings", data);
 
   useEffect(() => {
     dispatch(postsActions.getPosts());
+    dispatch(settingsActions.getSettings());
   }, []);
 
   const renderPosts = () => {

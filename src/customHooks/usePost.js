@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { postActions } from "slices/post";
 import { usePostSelector } from "./stateSelectors";
 import { Post } from "components/Post";
+import { isEmpty } from "lodash";
 
 /**
  * Gets the data from the store after fetching it to the API
@@ -25,7 +26,7 @@ export const usePost = () => {
   const renderPost = () => {
     if (postLoading) return <p>Loading post...</p>;
     if (postErrors) return <p>Unable to display post.</p>;
-    if (!post.title) return <p>Post Not Found</p>;
+    if (isEmpty(post)) return <p>Post Not Found</p>;
 
     return <Post post={post} />;
   };
