@@ -12,18 +12,14 @@ import { Comment } from "components/Comment";
 export const useComments = () => {
   const dispatch = useDispatch();
   const { id: postId = "" } = useParams();
-  const {
-    list: comments,
-    loading: commentsLoading,
-    errors: commentsErrors
-  } = useCommentsSelector();
+  const { list: comments, errors: commentsErrors } = useCommentsSelector();
 
   useEffect(() => {
     dispatch(commentsActions.getComments(postId));
   }, [postId]);
 
   const renderComments = () => {
-    if (commentsLoading) return <p>Loading comments...</p>;
+    if (!comments) return <p>Loading comments...</p>;
     if (commentsErrors) return <p>Unable to display comments.</p>;
 
     return comments.map((comment) => (
@@ -31,5 +27,5 @@ export const useComments = () => {
     ));
   };
 
-  return { comments, commentsLoading, commentsErrors, renderComments };
+  return { comments, commentsErrors, renderComments };
 };

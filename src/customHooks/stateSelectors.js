@@ -6,17 +6,7 @@ import {
   selectPosts
 } from "sagas/selectors";
 import { selectPost } from "sagas/selectors";
-import {
-  selectPostData,
-  selectPostErrors,
-  selectPostLoading
-} from "sagas/selectors";
-import {
-  selectComments,
-  selectCommentsErrors,
-  selectCommentsList,
-  selectCommentsLoading
-} from "../sagas/selectors";
+import { selectComments } from "sagas/selectors";
 
 // POSTS
 export const usePostsSelector = () => useSelector(selectPosts, shallowEqual);
@@ -29,19 +19,8 @@ export const usePostsErrorsSelector = () =>
 
 // POST
 export const usePostSelector = () => useSelector(selectPost, shallowEqual);
-export const usePostDataSelector = () =>
-  useSelector(selectPostData, shallowEqual);
-export const usePostLoadingSelector = () =>
-  useSelector(selectPostLoading, shallowEqual);
-export const usePostErrorsSelector = () =>
-  useSelector(selectPostErrors, shallowEqual);
 
 // COMMENTS
-export const useCommentsSelector = () =>
-  useSelector(selectComments, shallowEqual);
-export const useCommentsListSelector = () =>
-  useSelector(selectCommentsList, shallowEqual);
-export const useCommentsLoadingSelector = () =>
-  useSelector(selectCommentsLoading, shallowEqual);
-export const useCommentsErrorsSelector = () =>
-  useSelector(selectCommentsErrors, shallowEqual);
+// This way, we stay DRY
+export const useCommentsSelector = (fieldName) =>
+  useSelector(selectComments(fieldName), shallowEqual);

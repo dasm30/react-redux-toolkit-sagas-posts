@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getApiActionCreator } from "./utils/actionCreator";
 
+// NOTE: Removed loading from this reducer to demonstrate a
+// different approach with less code, but possibly more
+// error prone
+
 export const initialState = {
-  loading: false,
   errors: false,
-  list: []
+  list: undefined // []
 };
 
 const commentsSlice = createSlice({
@@ -12,15 +15,13 @@ const commentsSlice = createSlice({
   initialState,
   reducers: {
     getComments: (state) => {
-      state.loading = true;
+      state.errors = false;
+      state.list = undefined;
     },
     getCommentsSuccess: (state, { payload }) => {
       state.list = payload;
-      state.loading = false;
-      state.errors = false;
     },
     getCommentsError: (state) => {
-      state.loading = false;
       state.errors = true;
     }
   }
