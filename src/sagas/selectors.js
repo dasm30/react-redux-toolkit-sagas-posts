@@ -22,7 +22,7 @@ export const selectComments = (stateOrFieldName) => {
     };
   }
   // If state
-  return (state) => state.comments;
+  return stateOrFieldName.comments;
 };
 
 // SETTINGS

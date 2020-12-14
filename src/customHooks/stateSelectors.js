@@ -28,8 +28,11 @@ export const usePostFieldSelector = (fieldName) =>
 
 // COMMENTS
 // DRY and scalable
-export const useCommentsSelector = (fieldName) =>
-  useSelector(selectComments(fieldName), shallowEqual);
+// Also similar approach to LSP (SOLID)
+export const useCommentsSelector = (fieldName) => {
+  const selector = fieldName ? selectComments(fieldName) : selectComments;
+  return useSelector(selector, shallowEqual);
+};
 
 // SETTINGS
 // For demonstration purposes
