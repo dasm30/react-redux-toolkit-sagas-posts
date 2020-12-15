@@ -1,12 +1,10 @@
 {
-  "name": "react-redux-toolkit-sagas-posts",
+  "name": "react-toolkit-sagas-posts",
   "version": "1.0.0",
   "description": "A very basic example of Redux Toolkit with Sagas Implementation following KISS methodology",
   "keywords": [
-    "redux",
-    "kiss",
-    "react",
-    "toolkit"
+    "toolkit",
+    "redux"
   ],
   "main": "src/index.js",
   "dependencies": {

@@ -18,7 +18,6 @@ middleware.push(sagaMiddleware);
 const store = configureStore({
   reducer: rootReducer,
   middleware
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 });
 
 // run the saga
